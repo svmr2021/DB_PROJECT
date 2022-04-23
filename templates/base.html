@@ -16,7 +16,13 @@
     <hr>
      {% if request.user %}
         <h3>User -  {{ request.user.username }}</h3>
+         {% if request.user.client %}
          <h3>Company - {{ request.user.client.company_name }}</h3>
+             {% elif request.user.employee %}
+             <h3>Employee ID - {{ request.user.employee.identifier }}</h3>
+             {% else %}
+         {% endif %}
+
     {% endif %}
     <a href="{% url 'core:logout' %}">Logout</a>
 
