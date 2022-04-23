@@ -4,6 +4,7 @@
     <h1>Location - {{ location.title }}, latitude - {{ location.latitude }}, longitude - {{ location.longitude }}</h1>
     <h3>Here you can get full info about this location</h3>
     <hr>
+    <h3 id="mtype">Climate measurements</h3>
     <h4>Air information dataset from {{ dates.air_date.min_date|date:'M d, Y' }} to {{ dates.air_date.max_date|date:'M d, Y'  }}</h4>
     <table>
         <tr>
@@ -108,6 +109,8 @@
             </th>
         </tr>
     </table>
+    <hr>
+    <h3 id="mtype">Biodiversity measurements</h3>
     <hr>
     <h4>Plants information dataset from {{ dates.plant_date.min_date|date:'M d, Y' }} to {{ dates.plant_date.max_date|date:'M d, Y'  }}</h4>
     <table>

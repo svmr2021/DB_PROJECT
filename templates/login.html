@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+</head>
+</html>
+<body>
+    <div class="wrapper fadeInDown">
+    <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="active"> Sign In </h2>
+    <h2 class="inactive underlineHover"><a href="{% url 'core:register' %}">Sign Up </a></h2>
+
+
+    <!-- Login Form -->
+    <form action="{% url 'core:login' %}" method="post">>
+        {% csrf_token %}
+      <input type="text" id="login" class="fadeIn second" name="{{ form.username.name }}" value="{% if form.username.value %}{{ form.username.value }}{% endif %}" placeholder="login" required>
+      <input type="password" id="password" class="fadeIn third" name="{{ form.password.name }}" placeholder="password" required>
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+  </div>
+</div>
+</body>

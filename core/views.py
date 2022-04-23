@@ -1,12 +1,16 @@
+from django.contrib.auth import authenticate, login
 from django.db.models import Max, Min
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.views import generic
+
+from core.forms import RegistrationForm
 from core.models import *
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class CountryListView(generic.ListView):
+class CountryListView(LoginRequiredMixin, generic.ListView):
     model = Location
     template_name = 'index.html'
     context_object_name = 'countries'
@@ -16,7 +20,7 @@ class CountryListView(generic.ListView):
         return queryset
 
 
-class CountryDetailView(generic.DetailView):
+class CountryDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = 'country_detail.html'
     context_object_name = 'country'
 
@@ -29,7 +33,7 @@ class CountryDetailView(generic.DetailView):
         return response
 
 
-class RegionDetailView(generic.DetailView):
+class RegionDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = 'region_detail.html'
     context_object_name = 'region'
 
@@ -42,7 +46,7 @@ class RegionDetailView(generic.DetailView):
         return response
 
 
-class LocationDetailView(generic.DetailView):
+class LocationDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = 'location_detail.html'
     context_object_name = 'location'
 
@@ -60,3 +64,24 @@ class LocationDetailView(generic.DetailView):
         dates['plant_date'] = self.object.plant_set.aggregate(min_date=Min('date'), max_date=Max('date'))
         response['dates'] = dates
         return response
+
+
+class RegisterView(generic.FormView):
+    form_class = RegistrationForm
+    template_name = 'sign_up.html'
+    success_url = 'index.html'
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            company_name = form.cleaned_data['company_name']
+            user = authenticate(username=username, password=password)
+            Client.objects.create(user=user, company_name=company_name)
+            login(request, user)
+            return redirect('core:country_list')
+        return render(request, 'sign_up.html', {
+            'form': form,
+        })
