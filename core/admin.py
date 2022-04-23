@@ -15,9 +15,20 @@ class ModelAdmin(admin.ModelAdmin):
     list_display = ('user', 'identifier')
 
 
+@admin.register(Country)
+class ModelAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+
+
+@admin.register(Region)
+class ModelAdmin(admin.ModelAdmin):
+    list_display = ('country', 'title')
+
+
+
 @admin.register(Location)
 class ModelAdmin(admin.ModelAdmin):
-    list_display = ('country', 'latitude', 'longitude', 'region')
+    list_display = ('region', 'latitude', 'longitude', 'region')
 
 
 @admin.register(Air)

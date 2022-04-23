@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Region - {{ region }}</h1>
+        <h2>Region average statistics</h2>
+        <table>
+            <tr>
+                <th>Place</th>
+                <th>Air temp</th>
+                <th>Air humidity</th>
+                <th>Water temp</th>
+                <th>Water radioactivity</th>
+                <th>Soil moisture</th>
+                <th>Soil salinity</th>
+                <th>Noise level</th>
+                <th>Plants</th>
+                <th>Animals</th>
+            </tr>
+            {% for location in region.locations.all %}
+                <tr>
+                    <td><a href="{% url 'core:location_detail' location.id %}">{{ location.title }}</a></td>
+                    <td>{{ location.avg.air_avg.avg_temp }}C</td>
+                    <td>{{ location.avg.air_avg.avg_humidity }}% </td>
+                    <td>{{ location.avg.water_avg.avg_temp }}C</td>
+                    <td>{{ location.avg.water_avg.avg_radio }}</td>
+                    <td>{{ location.avg.soil_avg.avg_moisture }}</td>
+                    <td>{{ location.avg.soil_avg.avg_salinity }}</td>
+                    <td>{{ location.avg.noise_avg.avg_level }}</td>
+                    <td>{{ location.avg.plant_avg.avg_amount }}</td>
+                    <td>{{ location.avg.animal_avg.avg_amount }}</td>
+                </tr>
+         {% endfor %}
+        </table>
+        <p><a href="{% url 'core:country_detail' region.country.id%}">Back to region list</a></p>
+{% endblock %}

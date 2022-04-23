@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<h1><a id="header" href="{% url 'core:country_list' %}">ECOLOGICAL MONITORING</a></h1>
+{% block content %}
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+</body>
+</html>

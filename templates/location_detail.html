@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Location - {{ location.title }}, latitude - {{ location.latitude }}, longitude - {{ location.longitude }}</h1>
+    <h3>Here you can get full info about this location</h3>
+    <hr>
+    <h4>Air information dataset from {{ dates.air_date.min_date|date:'M d, Y' }} to {{ dates.air_date.max_date|date:'M d, Y'  }}</h4>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Pressure</th>
+        </tr>
+        {% for air in location.air_set.all %}
+            <tr>
+                <th>{{ air.date|date:'M d, Y' }}</th>
+                <th>{{ air.temperature }}</th>
+                <th>{{ air.humidity }}</th>
+                <th>{{ air.pressure }}</th>
+            </tr>
+        {% endfor %}
+        <tr>
+            <th></th>
+            <th id="avg">
+                Avg:{{ location.avg.air_avg.avg_temp }}
+            </th>
+            <th id="avg">
+                Avg:{{ location.avg.air_avg.avg_humidity }}
+            </th>
+            <th id="avg">
+                Avg:{{ location.avg.air_avg.avg_pressure  }}
+            </th>
+        </tr>
+    </table>
+    <hr>
+    <h4>Water information dataset from {{ dates.water_date.min_date|date:'M d, Y' }} to {{ dates.water_date.max_date|date:'M d, Y'  }}</h4>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Temperature</th>
+            <th>Radioactivity</th>
+        </tr>
+        {% for water in location.water_set.all %}
+            <tr>
+                <th>{{ water.date|date:'M d, Y' }}</th>
+                <th>{{ water.temperature }}</th>
+                <th>{{ water.radioactivity }}</th>
+            </tr>
+        {% endfor %}
+        <tr>
+            <th></th>
+            <th id="avg">
+                Avg:{{ location.avg.water_avg.avg_temp }}
+            </th>
+            <th id="avg">
+                Avg:{{ location.avg.water_avg.avg_radio }}
+            </th>
+        </tr>
+    </table>
+    <hr>
+    <h4>Soil information dataset from {{ dates.soil_date.min_date|date:'M d, Y' }} to {{ dates.soil_date.max_date|date:'M d, Y'  }}</h4>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Moisture</th>
+            <th>Salinity</th>
+            <th>Erosion</th>
+        </tr>
+        {% for soil in location.soil_set.all %}
+            <tr>
+                <th>{{ soil.date|date:'M d, Y' }}</th>
+                <th>{{ soil.moisture}}</th>
+                <th>{{ soil.salinity }}</th>
+                <th>{{ soil.erosion }}</th>
+            </tr>
+        {% endfor %}
+        <tr>
+            <th></th>
+            <th id="avg">
+                Avg:{{ location.avg.soil_avg.avg_moisture }}
+            </th>
+            <th id="avg">
+                Avg:{{ location.avg.soil_avg.avg_salinity }}
+            </th>
+            <th id="avg">
+                Avg:{{ location.avg.soil_avg.avg_erosion }}
+            </th>
+        </tr>
+    </table>
+    <hr>
+    <h4>Noise information dataset from {{ dates.noise_date.min_date|date:'M d, Y' }} to {{ dates.noise_date.max_date|date:'M d, Y'  }}</h4>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Level</th>
+        </tr>
+        {% for noise in location.noise_set.all %}
+            <tr>
+                <th>{{ noise.date|date:'M d, Y' }}</th>
+                <th>{{ noise.level}}</th>
+            </tr>
+        {% endfor %}
+        <tr>
+            <th></th>
+            <th id="avg">
+                Avg:{{ location.avg.noise_avg.avg_level }}
+            </th>
+        </tr>
+    </table>
+    <hr>
+    <h4>Plants information dataset from {{ dates.plant_date.min_date|date:'M d, Y' }} to {{ dates.plant_date.max_date|date:'M d, Y'  }}</h4>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Amount</th>
+        </tr>
+        {% for plant in location.plant_set.all %}
+            <tr>
+                <th>{{ plant.date|date:'M d, Y' }}</th>
+                <th>{{ plant.type}}</th>
+                <th>{{ plant.amount}}</th>
+            </tr>
+        {% endfor %}
+        <tr>
+            <th></th>
+            <th></th>
+            <th id="avg">
+                Avg:{{ location.avg.plant_avg.avg_amount }}
+            </th>
+        </tr>
+    </table>
+    <hr>
+    <h4>Animals information dataset from {{ dates.animal_date.min_date|date:'M d, Y' }} to {{ dates.animal_date.max_date|date:'M d, Y'  }}</h4>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Amount</th>
+        </tr>
+        {% for animal in location.animal_set.all %}
+            <tr>
+                <th>{{ animal.date|date:'M d, Y' }}</th>
+                <th>{{ animal.type}}</th>
+                <th>{{ animal.amount}}</th>
+            </tr>
+        {% endfor %}
+        <tr>
+            <th></th>
+            <th></th>
+            <th id="avg">
+                Avg:{{ location.avg.animal_avg.avg_amount }}
+            </th>
+        </tr>
+    </table>
+    <p><a href="{% url 'core:region_detail' location.region.id %}">Back to region detail</a></p>
+{% endblock %}

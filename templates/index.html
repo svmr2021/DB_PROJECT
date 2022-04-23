@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+ <h1>Countries</h1>
+    {% for country in countries %}
+        <p><a href="{% url 'core:country_detail' country.id %}">{{ country.title }}</a></p>
+    {% endfor %}
+{% endblock %}
