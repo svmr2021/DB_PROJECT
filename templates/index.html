@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
- <h1>Countries</h1>
-    {% for country in countries %}
-        <p><a href="{% url 'core:country_detail' country.id %}">{{ country.title }}</a></p>
-    {% endfor %}
+<h1>Countries</h1>
+    <div class="card-group">
+        {% for country in countries %}
+        <div class="card">
+          <img class="card-img-top img-fluid" src="https://dummyimage.com/400x200/bbbbbb/ffffff&text={{ country.title }}" alt="Card image cap" width="400">
+          <div class="card-body">
+            <h4 class="card-title">{{ country.title }}</h4>
+          </div>
+          <div class="card-footer">
+            <a href="{% url 'core:country_detail' country.id %}" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
 {% endblock %}

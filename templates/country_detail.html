@@ -3,8 +3,11 @@
 {% block content %}
     <h1>Country - {{ country.title }}</h1>
     <h2>Regions</h2>
+    <div class="button-group">
     {% for region in country.regions.all %}
-        <p><a href="{% url 'core:region_detail' region.id %}">{{ region }}</a></p>
+    <a href="{% url 'core:region_detail' region.id %}" class="btn btn-lg btn-outline-secondary">{{ region }}</a>
+    <!-- <p><a href="{% url 'core:region_detail' region.id %}">{{ region }}</a></p> -->
     {% endfor %}
-    <p><a href="{% url 'core:country_list'%}">Back to country list</a></p>
+</div>
+<p><a href="{% url 'core:country_list'%}" class="btn btn-lg btn-outline-danger mt-2">Back to country list</a></p>
 {% endblock %}

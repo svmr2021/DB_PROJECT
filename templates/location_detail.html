@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Location - {{ location.title }}, latitude - {{ location.latitude }}, longitude - {{ location.longitude }}</h1>
+    <h3 class="display-3">Location - {{ location.title }}</h3>
+    <h6 class="display-6">latitude - {{ location.latitude }}</h6>
+    <h6 class="display-6">longitude - {{ location.longitude }}</h6>
+
     <h3>Here you can get full info about this location</h3>
     <hr>
     <h3 id="mtype">Climate measurements</h3>
     <h4>Air information dataset from {{ dates.air_date.min_date|date:'M d, Y' }} to {{ dates.air_date.max_date|date:'M d, Y'  }}</h4>
-    <table>
+    <table class="table table-bordered">
         <tr>
             <th>Date</th>
             <th>Temperature</th>
@@ -36,7 +39,7 @@
     </table>
     <hr>
     <h4>Water information dataset from {{ dates.water_date.min_date|date:'M d, Y' }} to {{ dates.water_date.max_date|date:'M d, Y'  }}</h4>
-    <table>
+    <table class="table table-bordered">
         <tr>
             <th>Date</th>
             <th>Temperature</th>
@@ -61,7 +64,7 @@
     </table>
     <hr>
     <h4>Soil information dataset from {{ dates.soil_date.min_date|date:'M d, Y' }} to {{ dates.soil_date.max_date|date:'M d, Y'  }}</h4>
-    <table>
+    <table class="table table-bordered">
         <tr>
             <th>Date</th>
             <th>Moisture</th>
@@ -91,7 +94,7 @@
     </table>
     <hr>
     <h4>Noise information dataset from {{ dates.noise_date.min_date|date:'M d, Y' }} to {{ dates.noise_date.max_date|date:'M d, Y'  }}</h4>
-    <table>
+    <table class="table table-bordered">
         <tr>
             <th>Date</th>
             <th>Level</th>
@@ -113,7 +116,7 @@
     <h3 id="mtype">Biodiversity measurements</h3>
     <hr>
     <h4>Plants information dataset from {{ dates.plant_date.min_date|date:'M d, Y' }} to {{ dates.plant_date.max_date|date:'M d, Y'  }}</h4>
-    <table>
+    <table class="table table-bordered">
         <tr>
             <th>Date</th>
             <th>Type</th>
@@ -136,7 +139,7 @@
     </table>
     <hr>
     <h4>Animals information dataset from {{ dates.animal_date.min_date|date:'M d, Y' }} to {{ dates.animal_date.max_date|date:'M d, Y'  }}</h4>
-    <table>
+    <table class="table table-bordered">
         <tr>
             <th>Date</th>
             <th>Type</th>
