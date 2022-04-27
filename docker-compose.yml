@@ -9,7 +9,7 @@ services:
     environment:
       - MYSQL_DATABASE=db_project
       - MYSQL_USER=db_project
-      - MYSQL_PASSWORD=db_project
+      - MYSQL_PASSWORD=dbproject
       - MYSQL_ROOT_PASSWORD=root
     env_file:
       - ./.env
