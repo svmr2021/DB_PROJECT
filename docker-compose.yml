@@ -7,10 +7,10 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     environment:
-      - MYSQL_DATABASE=db_project1
-      - MYSQL_USER=dbproject
-      - MYSQL_PASSWORD=dbproject
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=db
+      - MYSQL_USER=db
+      - MYSQL_PASSWORD=db
+      - MYSQL_ROOT_PASSWORD=db
     env_file:
       - ./.env
     ports:
